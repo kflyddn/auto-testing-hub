@@ -1,0 +1,67 @@
+# To execute this docker-compose yml file use `docker-compose -f <file_name> up`
+# Add the `-d` flag at the end for detached execution
+version: '2'
+services:
+  firefox1:
+    image: docker-registry.digitalalchemy.net.au/node-firefox-debug
+    shm_size: 512m
+    volumes:
+      - /dev/shm:/dev/shm
+      - /etc/hosts:/etc/hosts
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+  firefox2:
+    image: docker-registry.digitalalchemy.net.au/node-firefox-debug
+    shm_size: 512m
+    volumes:
+      - /dev/shm:/dev/shm
+      - /etc/hosts:/etc/hosts
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+  firefox3:
+    image: docker-registry.digitalalchemy.net.au/node-firefox-debug
+    shm_size: 512m
+    volumes:
+      - /dev/shm:/dev/shm
+      - /etc/hosts:/etc/hosts
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+
+
+  chrome1:
+    image: docker-registry.digitalalchemy.net.au/node-chrome-debug
+    shm_size: 512m
+    volumes:
+      - /dev/shm:/dev/shm
+      - /etc/hosts:/etc/hosts
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+  chrome2:
+    image: docker-registry.digitalalchemy.net.au/node-chrome-debug
+    shm_size: 512m
+    volumes:
+      - /dev/shm:/dev/shm
+      - /etc/hosts:/etc/hosts
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+
+  hub:
+    image: docker-registry.digitalalchemy.net.au/selenium_hub
+    hostname: selenium_hub
+    ports:
+      - "4444:4444"
+
+networks:
+  default:
+    external:
+      name: selenium_test

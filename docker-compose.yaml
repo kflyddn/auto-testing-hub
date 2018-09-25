@@ -1,0 +1,20 @@
+# To execute this docker-compose yml file use `docker-compose -f <file_name> up`
+# Add the `-d` flag at the end for detached execution
+version: '2'
+services:
+
+  testenv:
+    container_name: selenium_python
+    image: "docker-registry.digitalalchemy.net.au/selenium_python:1.0"
+    command: python /data/selenium/testcode/udecide_login_test_html_runner.py
+    volumes:
+      - ./testcode/reports:/data/selenium/reports
+      - ./testcode:/data/selenium/testcode
+      - /etc/hosts:/etc/hosts
+    stdin_open: true
+    tty: true
+
+networks:
+  default:
+    external:
+      name: selenium_test
