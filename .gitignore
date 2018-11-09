@@ -1,2 +1,7 @@
 *.pyc
 *.html
+__pycache__
+*.log
+.DS_Store
+mysql/data
+#pushToOMV.sh
